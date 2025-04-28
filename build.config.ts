@@ -1,5 +1,5 @@
 import { defineBuildConfig } from "unbuild";
-
+/* Only ESModule */
 export default defineBuildConfig({
   // If entries is not provided, will be automatically inferred from package.json
   entries: [
@@ -15,6 +15,13 @@ export default defineBuildConfig({
   clean: true,
   declaration: true,
   rollup: {
-    emitCJS: true,
+    emitCJS: false,
+    output: {
+      format: "esm",
+      entryFileNames: "[name].js",
+    },
+    esbuild: {
+      minify: true,
+    },
   },
 });
